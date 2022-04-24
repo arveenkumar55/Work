@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>CSC 376 Distributed Systems -- Programming Exercise</title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2022.6">
+  <style type="text/css">
+    li.li4 {margin: 0.0px 0.0px 26.6px 0.0px; font: 21.3px Times; color: #000000; -webkit-text-stroke: #000000}
+    li.li5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 21.3px Times; color: #000000; -webkit-text-stroke: #000000}
+    li.li6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 21.3px Menlo; color: #00006d}
+    li.li7 {margin: 0.0px 0.0px 26.6px 0.0px; font: 32.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    li.li8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 21.3px Menlo; color: #00006d; -webkit-text-stroke: #00006d; background-color: #ebeaff}
+    li.li9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 21.3px Menlo; color: #00006d; background-color: #ebeaff}
+    li.li10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 21.3px Menlo; color: #00006d; -webkit-text-stroke: #00006d}
+    span.s1 {font-kerning: none; background-color: #ebebeb}
+    span.s2 {font-kerning: none}
+    span.s3 {font: 32.0px Times; -webkit-text-stroke: 0px #000000}
+    span.s4 {font: 32.0px Times; font-kerning: none}
+    span.s5 {-webkit-text-stroke: 0px #000000}
+    span.s6 {font: 21.3px Menlo; font-kerning: none; color: #00006d; background-color: #ebeaff; -webkit-text-stroke: 0px #00006d}
+    span.s7 {background-color: #ebeaff}
+    span.s8 {font-kerning: none; background-color: #ebeaff; -webkit-text-stroke: 0px #00006d}
+    span.s9 {font: 21.3px Menlo; font-kerning: none}
+    span.s10 {font-kerning: none; -webkit-text-stroke: 0px #00006d}
+    span.s11 {font: 21.3px Times; color: #000000; -webkit-text-stroke: 0px #000000}
+    span.s12 {font: 21.3px Times; font-kerning: none; color: #000000; -webkit-text-stroke: 0px #000000}
+    span.s13 {font-kerning: none; background-color: #ebeaff}
+    ol.ol1 {list-style-type: decimal}
+    ul.ul1 {list-style-type: disc}
+    ul.ul2 {list-style-type: circle}
+    ul.ul3 {list-style-type: square}
+  </style>
+</head>
+<body>
+<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; text-align: center; font: 24.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>CSC 376 Distributed Systems</b></span></h1>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; text-align: center; font: 14.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>Programming Exercise</b></span></h3>
+<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 24.0px Times; color: #000000; -webkit-text-stroke: #000000; background-color: #ebebeb"><span class="s2"><b>Chat with File Transfers</b></span></h1>
+<ul class="ul1">
+  <li class="li4"><span class="s3"><b></b></span><span class="s4"><b>Functionality<br>
+</b></span><span class="s2">You are to create an enhanced chat system. In particular, you will create a chat client and a chat server that are capable of transmitting messages as well as transferring files. In particular, the system will perform as follows:</span></li>
+  <ol class="ol1">
+    <li class="li5"><span class="s5"></span><span class="s2">The server will listen for connections from clients.</span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">Once a client is connected, it can send messages, <b>at will</b>, to the server. It will also receive from the server all messages sent by the other connected clients.</span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">The user will provide messages to the client using standard input.</span></li>
+    <li class="li5"><span class="s5"><b></b></span><span class="s2"><b>NOTE:</b> The first message sent by the client must be the name of the user, in order for the server to forward the name of the user who has sent a message. Additionally, the user name will be used to identify the user who owns a file that may be requested by another user.</span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">Immediately after receiving a message, the server must forward the message and the name of the user who sent the message to all connected clients, except for the client that sent the message. <b>DO NOT SEND THE MESSAGE BACK TO THE ORIGINATING CLIENT!</b></span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">The format of the combined name and message includes a colon, followed by a single space, immediately after the name of the sender; the message follows. Hence, the format can be represented as follows: </span><span class="s6"><b>&lt;sender name&gt;: &lt;message&gt;</b></span></li>
+    <li class="li6"><span class="s7"><b></b></span><span class="s8"><b><br>
+</b></span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">Once it receives a message, which now includes the name of the sender, the client will write the message to standard output.</span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">The client must write each message on its own line of output.</span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">In addition to transmitting and receiving messages, the client and server will also transfer files using a binary transfer method, meaning that all of the bytes of a file will be transmitted exactly as is.</span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">Because the client must also transfer files, it will monitor file transfer requests. Although the client could use the same socket connection for transferring files, the user of the client that is sending a file might interfere with the transfer process by sending a text message during the transfer. Therefore, you <b>are strongly encouraged to</b> create a separate socket connection for transferring files.</span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">In order to initiate a file transfer request, the client must send the name of the file and the name of the user who owns a copy of the file to the server. A user may request a file <b>at any time,</b> and the name of the file and the owning user must be supplied by the requesting user through standard input.</span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">When the server receives a file transfer request, it must immediately initiate a file transfer process. The server may set up a relay between the clients involved, i.e., the requesting client and the supplying client, or it may set up a peer-to-peer connection between the requesting client and the supplying client. In either case, <b>all</b> of the bytes in the file must be transmitted <b>as is</b>. If the file cannot be found or read, the client that is supposed to supply the file may simply ignore the request but it may <b>not</b> terminate. Whether requesting or supplying a file, the client must continue to send and receive messages, as well as be able to request additional files and respond to additional file requests.</span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">When the requesting client receives the file bytes, it must store them in a file with the same name in the local directory.</span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">When a client closes its socket, the server will remove that client from its list, but the server will continue to run and the other connected clients will be able to continue exchanging messages and files. Additionally, new clients will be able to connect and exchange messages and files.</span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">Because the client program will be menu-driven, the user will terminate the client by using standard input to select an appropriate option.</span></li>
+  </ol>
+  <li class="li7"><span class="s5"><b></b></span><span class="s2"><b>Client Interface</b></span></li>
+  <ul class="ul2">
+    <li class="li5"><span class="s5"></span><span class="s2">As explained above, the user will interact with the client through standard input. In order to facilitate interaction, as well as for evaluation, the client must conform to the following input standards:</span></li>
+    <ol class="ol1">
+      <li class="li5"><span class="s5"></span><span class="s2">The client must display a menu of options for the user to choose from. Each option is associated with a single letter, as shown. The options are:</span></li>
+      <ul class="ul3">
+        <li class="li5"><span class="s5"></span><span class="s2">Send a message (m)</span></li>
+        <li class="li5"><span class="s5"></span><span class="s2">Request a file (f)</span></li>
+        <li class="li5"><span class="s5"></span><span class="s2">Exit the client (and disconnect from the server) (x)</span></li>
+      </ul>
+      <li class="li5"><span class="s5"></span><span class="s2">The user may enter an option using a lower-case letter.</span></li>
+      <li class="li5"><span class="s5"></span><span class="s2">In order to send a message, the user chooses the message option by typing the </span><span class="s9">'m'</span><span class="s2"> character and pressing the </span><span class="s9">Enter</span><span class="s2"> key. The user then types the message. After the user enters the message, the client redisplays the menu for the next user action.</span></li>
+      <li class="li5"><span class="s5"></span><span class="s2">In order to request a file, the user chooses the option to request a file, </span><span class="s9">'f'</span><span class="s2">. The client must then prompt the user to enter <b><i>first</i></b> the name of the user who owns the file and <b><i>second</i></b> the name of the file. You may assume that a particular user connected to the chat server owns a particular file, although you are responsible for setting up an appropriate test to verify that your file transfer functionality works correctly. After the user enters the file request information, the client redisplays the menu for the next user action while the file transfer request is processed in another thread. Hence, the user must be able to continue sending messages and requesting other files while prior file requests are being processed.</span></li>
+      <li class="li5"><span class="s5"></span><span class="s2">The client will shutdown any connections and terminate as soon as the user enters the </span><span class="s9">'x'</span><span class="s2"> option.</span></li>
+    </ol>
+    <li class="li5"><span class="s5"></span><span class="s2">Example interaction:</span></li>
+    <ul class="ul3">
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b>Enter an option ('m', 'f', 'x'):</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b><span class="Apple-converted-space">  </span>(M)essage (send)</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b><span class="Apple-converted-space">  </span>(F)ile (request)</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b> e(X)it</b></span></li>
+      <li class="li9"><b></b><span class="s10"><b>m</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b>Enter your message:</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b>hello!</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b>Enter an option ('m', 'f', 'x'):</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b><span class="Apple-converted-space">  </span>(M)essage (send)</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b><span class="Apple-converted-space">  </span>(F)ile (request)</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b> e(X)it</b></span></li>
+      <li class="li9"><b></b><span class="s10"><b>f</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b>Who owns the file?</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b>client1</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b>Which file do you want?</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b>Ameca_splendens.jpg</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b>Enter an option ('m', 'f', 'x'):</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b><span class="Apple-converted-space">  </span>(M)essage (send)</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b><span class="Apple-converted-space">  </span>(F)ile (request)</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b> e(X)it</b></span></li>
+      <li class="li9"><b></b><span class="s10"><b>m</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b>Enter your message:</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b>another important message!</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b>Enter an option ('m', 'f', 'x'):</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b><span class="Apple-converted-space">  </span>(M)essage (send)</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b><span class="Apple-converted-space">  </span>(F)ile (request)</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b> e(X)it</b></span></li>
+      <li class="li9"><b></b><span class="s10"><b>x</b></span></li>
+      <li class="li8"><span class="s5"><b></b></span><span class="s2"><b>closing your sockets...goodbye</b></span></li>
+      <li class="li6"><span class="s7"><b></b></span><span class="s8"><b><br>
+</b></span></li>
+    </ul>
+  </ul>
+  <li class="li7"><span class="s5"><b></b></span><span class="s2"><b>Usage</b></span></li>
+  <ul class="ul2">
+    <li class="li5"><span class="s5"></span><span class="s2">The server will simply be given the listening port number on the command line (without the '-' character), as follows:</span></li>
+    <ul class="ul3">
+      <li class="li10"><span class="s11"></span><span class="s12">Python: </span><span class="s13"><b>$&gt; python ChatServer.py &lt;listening port number&gt;<span class="Apple-converted-space"> </span></b></span></li>
+      <li class="li6"><span class="s7"><b></b></span><span class="s8"><b><br>
+</b></span></li>
+      <li class="li10"><span class="s11"></span><span class="s12">Java: </span><span class="s13"><b>$&gt; java ChatServer &lt;listening port number&gt;<span class="Apple-converted-space"> </span></b></span></li>
+      <li class="li6"><span class="s7"><b></b></span><span class="s8"><b><br>
+</b></span></li>
+    </ul>
+    <li class="li5"><span class="s5"></span><span class="s2">Assuming that the client uses a separate socket for file transfers, the port number on which the client will listen for file requests is also provided on the command line, along with the port number of the chat server. The port number that the client will listen on is designated with an </span><span class="s9">-l</span><span class="s2"> option, while </span><span class="s9">-p</span><span class="s2"> specifies the port number of the chat server:</span></li>
+    <ul class="ul3">
+      <li class="li10"><span class="s11"></span><span class="s12">Python: </span><span class="s13"><b>$&gt; python ChatClient.py -l &lt;client listening port number&gt; -p &lt;connect server port&gt;</b></span></li>
+      <li class="li6"><span class="s7"><b></b></span><span class="s8"><b><br>
+</b></span></li>
+      <li class="li10"><span class="s11"></span><span class="s12">Java: </span><span class="s13"><b>$&gt; java ChatClient -l &lt;client listening port number&gt; -p &lt;connect server port&gt;</b></span></li>
+      <li class="li6"><span class="s7"><b></b></span><span class="s8"><b><br>
+</b></span></li>
+    </ul>
+  </ul>
+  <li class="li7"><span class="s5"><b></b></span><span class="s2"><b>Testing and Assessment</b></span></li>
+  <ul class="ul2">
+    <li class="li5"><span class="s5"></span><span class="s2">The automated grading tool for this assignment is contained within the tar file </span><span class="s9">autograde-chat-with-files.tar</span><span class="s2">. Download the tar file from D2L and place it in the same directory as your code. Then, extract the grading files by using the following command in a terminal window: </span><span class="s6"><b>$&gt; cd /path/to/my/code</b></span></li>
+    <li class="li8"><span class="s5"><b></b></span><span class="s2"><b>$&gt; tar xvf autograde-chat-with-files.tar</b></span></li>
+    <li class="li6"><span class="s7"><b></b></span><span class="s8"><b><br>
+</b></span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">If you are using Java, you must compile your code before running the grading tool.</span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">Run the grading tool from the command line. If your code was written in Python, start the grading tool as follows: </span><span class="s6"><b>$&gt; py autograde-chat-with-files-py.py</b></span></li>
+    <li class="li6"><span class="s7"><b></b></span><span class="s8"><b><br>
+</b></span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">If your code was written in Java, start the grading tool as follows: </span><span class="s6"><b>$&gt; py autograde-chat-with-files-java.py</b></span></li>
+    <li class="li6"><span class="s7"><b></b></span><span class="s8"><b><br>
+</b></span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">NOTE: In order to work with the test structure, your code must assume that all files sent and received are located in the local directory. Thus, <b>DO NOT INCLUDE PATH INFORMATION WHEN OPENING FILES FOR READING OR WRITING!</b></span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">The grading tool will output the total number of points earned. It will also report certain errors found, if any.</span></li>
+    <li class="li5"><span class="s5"></span><span class="s2">This exercise is worth 24 points.</span></li>
+  </ul>
+  <li class="li4"><span class="s3"><b></b></span><span class="s4"><b>Submission<br>
+</b></span><span class="s2"><b>SUBMIT ONLY THE FOLLOWING TO THE SUBMISSIONS FOLDER ON D2L; ALL OTHER SUBMISSIONS WILL BE IGNORED:</b></span></li>
+  <ol class="ol1">
+    <li class="li5"><span class="s5"><b></b></span><span class="s2"><b>your .py or .java source files</b></span></li>
+  </ol>
+</ul>
+</body>
+</html>
